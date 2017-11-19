@@ -10,7 +10,7 @@ KEY_CODES = {
   39: 'right',
   40: 'down',
   70: 'f',
-  71: 'g',
+  71: 'n',
   72: 'h',
   77: 'm',
   80: 'p'
@@ -208,7 +208,7 @@ Sprite = function () {
     }
 
     if (KEY_STATUS.g && this.currentNode) {
-      this.context.lineWidth = 3.0;
+      this.context.lineWidth = 5.0;
       this.context.strokeStyle = 'green';
       this.context.strokeRect(gridx*GRID_SIZE+2, gridy*GRID_SIZE+2, GRID_SIZE-4, GRID_SIZE-4);
       this.context.strokeStyle = 'black';
@@ -387,7 +387,7 @@ Ship = function () {
     } else if (KEY_STATUS.right) {
       this.vel.rot = 6;
     } else {
-      this.vel.rot = 0;
+      this.vel.rot = 1;
     }
 
     if (KEY_STATUS.up) {
@@ -545,7 +545,7 @@ BigAlien = function () {
   };
 
   BigAlien.prototype.collision = function (other) {
-    if (other.name == "bullet") Game.score += 200;
+    if (other.name == "bullet") Game.score += 100;
     SFX.explosion().play();
     Game.explosionAt(other.x, other.y);
     this.visible = false;
@@ -836,8 +836,8 @@ Text = {
 };
 
 SFX = {
-  laser:     new Audio('39459__THE_bizniss__laser.wav'),
-  explosion: new Audio('51467__smcameron__missile_explosion.wav')
+  explosion: new Audio('51467__smcameron__missile_explosion.wav'),
+  laser:     new Audio('39459__THE_bizniss__laser.wav')
 };
 
 // preload audio
@@ -870,7 +870,7 @@ Game = {
   totalAsteroids: 5,
   lives: 0,
 
-  canvasWidth: 800,
+  canvasWidth: 900,
   canvasHeight: 600,
 
   sprites: [],
@@ -932,8 +932,8 @@ Game = {
       }
 
       Game.score = 0;
-      Game.lives = 2;
-      Game.totalAsteroids = 2;
+      Game.lives = 3;
+      Game.totalAsteroids = 4;
       Game.spawnAsteroids();
 
       Game.nextBigAlienTime = Date.now() + 30000 + (30000 * Math.random());
